@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "Podcaster",
+    "slug": "podcaster",
+    "scheme": "your-app-scheme",
+    "version": "1.1.3",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIBackgroundModes": ["audio"],
+        "NSMicrophoneUsageDescription": "This app does not request or use microphone access. The permission is listed due to technical requirements of integrated expo-av library for media playback features, but it is not utilized.",
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPICategoryDiskSpace": "Required by third-party libraries for internal operations, not directly used by our app.",
+            "NSPrivacyAccessedAPICategoryFileTimestamp": "Needed by included libraries for their functionality, without direct usage in our app's features.",
+            "NSPrivacyAccessedAPICategoryUserDefaults": "Utilized by libraries within our app for configuration purposes, not actively used in our code.",
+            "NSPrivacyAccessedAPICategorySystemBootTime": "Employed by embedded libraries for performance optimization, not explicitly used by our app."
+          }
+        ]
+      },
+      "backgroundModes": ["audio"],
+      "bundleIdentifier": "me.bidnyi.maksym.Podcaster"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "owner": "mbidnyj",
+    "plugins": ["expo-router"],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4f3eeb0f-07d4-4731-a315-ebe47bc2751c"
+      }
+    }
+  }
+}

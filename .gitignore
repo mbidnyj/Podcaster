@@ -1,0 +1,6 @@
+www/node_modules/
+www/config/config.env
+www/public/images/
+www/public/voices/
+privacy-policy/
+**/.DS_Store
