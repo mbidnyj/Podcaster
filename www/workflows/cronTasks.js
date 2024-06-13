@@ -54,9 +54,13 @@ async function taskRunner() {
             logManager.logMessage(result);
 
             // Sequentially generate and distribute podcasts for each document
+            // Stop after processing two documents from insertedDocs
+            let counter = 0;
             for (const doc of insertedDocs) {
+                if (counter >= 2) break;
                 try {
                     await generateAndDistributePodcast(doc);
+                    counter++;
                 } catch (error) {
                     const errorMessage = `Error generating and distributing podcast for ${doc.title}: ${error}`;
                     console.error(errorMessage);
