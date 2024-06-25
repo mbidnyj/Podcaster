@@ -19,7 +19,7 @@ E.STATUS = {
 E.createPodcastForTopic = async (topic) => {
     const content = await getOnlineContent(topic.description, true);
     const podcastPrompt = createPodcastPrompt(topic.description, content, topic.tag);
-    const rawPodcast = await llm.textCompletion(llm.MODELS.gpt_4o, podcastPrompt.instruction, podcastPrompt.prompt);
+    const rawPodcast = await llm.textCompletion(llm.MODELS.claude_3, podcastPrompt.instruction, podcastPrompt.prompt);
     const podcast = E.convertToObjects(rawPodcast);
     topic.podcast = rawPodcast;
     topic.save();

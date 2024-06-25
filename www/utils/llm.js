@@ -7,7 +7,7 @@ const MODELS = {
     gpt_4: "gpt-4-turbo-2024-04-09",
     gpt_4o: "gpt-4o",
     gpt_3_5: "gpt-3.5-turbo",
-    claude_3: "claude-3-opus-20240229",
+    claude_3: "claude-3-5-sonnet-20240620",
     perplexity_large: "llama-3-sonar-large-32k-online",
     perplexity_small: "llama-3-sonar-small-32k-online",
 };
