@@ -8,6 +8,13 @@
                 "tabWidth": 2,
                 "printWidth": 80
             }
+        },
+        {
+            "files": ["package.json", "sessions.json"],
+            "options": {
+                "tabWidth": 2,
+                "printWidth": 80
+            }
         }
     ]
 }
