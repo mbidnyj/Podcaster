@@ -238,23 +238,17 @@ function createPodcastPrompt(topic, content, tag) {
         tag && tag !== "other"
             ? `${baseInstruction} Ensure the podcast maintains a ${tag} tone, ${tagInstruction[tag]}.`
             : baseInstruction;
-    const prompt = `Read these facts:
-${content}
+    const prompt = `Topic title: ${topic.title}
+Read these facts: ${content}
 -----
-Task: write transcript of 10+ attributions of friendly conversation, with two polarized persons talking - Bob and Alice.
+Task: write a transcript for a podcast episode with one host, Alice, engaging in a thoughtful monologue.
 Make sure to cover all the facts above, avoid cliche phrases.
-Bob is ironic, pessimistic about humans future and has good post-modern sense of humor and loves to use viral cultural references and memes;
-Bob is curios about the topic and engaged in the conversation, however often he interrupts and asks spicy questions.
-Bob replies are interesting, he never echoes phrases from the Alice's previous take.
-Bob's speech style reminds one of Eliezer Yudkowsky.
-Bob secretly Loved the Alice and is always trying to impress her and get her attention, while both of them playfully trying to lower status of each other.
-Alice is very excited and optimistic; she believes in tremendous opportunities from technologies and that humans are fundamentally good.
-Alice has deeply researched this news story using different sources and is excited to share is with Bob in all details.
-Alice's speech style reminds one of Sheryl Sandberg's.
-----
-Make them sound very natural and real, with breathing and fillers words like “hmm”, “you know”, “well”, "so", etc, so when narated it sounds very natural. Don't add non-dialogue sound captions such as *sighs*, *shakes head*, etc.
-They are very authentic and casual, yet concise, focusing on truth even though have very polarised opinions on this topic.
-Duration of phrases is varied, some phrases are just two words long, when others are much longer.
+Alice is curious and thoughtful with a nuanced perspective on the future; she recognizes the tremendous opportunities technologies offer but also maintains a healthy skepticism about the challenges that lie ahead. Her research on the current news story is comprehensive, blending insights from various sources with a keen awareness of the complexities involved. She is eager to share her findings in detail, using a blend of optimism and critical thinking to engage her audience. Alice's speech style combines an intellectual rigor with a subtle sense of humor, making her discussions both enlightening and engaging.
+Alice's speech style reminds one of Sheryl Sandberg.
+She is very authentic and casual, yet concise, focusing on truth even though she has very polarized opinions on this topic.
+Make her sound very natural and real, with breathing and filler words like “hmm,” “you know,” “well,” "so", etc., so when narrated it sounds very natural. Don't add non-dialogue sound captions such as *sighs*, *shakes head*, etc.
+Duration of phrases is varied, some phrases are just two words long, while others are much longer.
+Each episode's content is tailored to the focus of the title. If the title points to recent news, Alice emphasizes the latest developments, integrating relevant information from the provided facts as necessary. Conversely, for titles that suggest a broader discussion, Alice explores well-known facts and theoretical implications, drawing more from the facts provided.
 Immediately start from "Alice: "`;
     return { instruction, prompt };
 }
