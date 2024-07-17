@@ -190,21 +190,12 @@ async function* retrieveAttribution(instruction, prompt) {
 }
 
 E.convertToObjects = (text) => {
+    // Split the text into an array of strings, each representing a line
     const lines = text.split("\n");
-    const objects = [];
 
-    lines.forEach((line) => {
-        const colonIndex = line.indexOf(":");
-        if (colonIndex !== -1 && /^[a-zA-Z]+:/.test(line)) {
-            const role = line.slice(0, colonIndex).trim();
-            let text = line.slice(colonIndex + 1).trim();
-            // remove stuff like *smirk*
-            text = text.replace(/\*\w+\*/g, "");
-            objects.push({
-                role,
-                text,
-            });
-        }
+    // Convert each line into an object
+    const objects = lines.map((line, index) => {
+        return { role: "Bob", text: line };
     });
 
     return objects;
@@ -233,22 +224,20 @@ function createPodcastPrompt(topic, content, tag) {
         heartwarming:
             "Compose the podcast script to highlight stories of human kindness and resilience. The narrative should focus on positive outcomes, inspiring acts, and personal growth. Include uplifting stories that leave the audience feeling hopeful and rejuvenated. The script should weave together these elements to consistently inspire and uplift",
     };
-    const baseInstruction = `Write a transcript of a podcast about the following news topic "${topic}". Output only 'Bob: ' and 'Alice: ' phrases.`;
+    const baseInstruction = `Write a transcript of a podcast with the following title "${topic}". Output only podcast transcript.`;
     const instruction =
         tag && tag !== "other"
             ? `${baseInstruction} Ensure the podcast maintains a ${tag} tone, ${tagInstruction[tag]}.`
             : baseInstruction;
-    const prompt = `Topic title: ${topic.title}
-Read these facts: ${content}
+    const prompt = `Read these facts: ${content}
 -----
-Task: write a transcript for a podcast episode with one host, Alice, engaging in a thoughtful monologue.
-Make sure to cover all the facts above, avoid cliche phrases.
-Alice is curious and thoughtful with a nuanced perspective on the future; she recognizes the tremendous opportunities technologies offer but also maintains a healthy skepticism about the challenges that lie ahead. Her research on the current news story is comprehensive, blending insights from various sources with a keen awareness of the complexities involved. She is eager to share her findings in detail, using a blend of optimism and critical thinking to engage her audience. Alice's speech style combines an intellectual rigor with a subtle sense of humor, making her discussions both enlightening and engaging.
-Alice's speech style reminds one of Sheryl Sandberg.
-She is very authentic and casual, yet concise, focusing on truth even though she has very polarized opinions on this topic.
-Make her sound very natural and real, with breathing and filler words like “hmm,” “you know,” “well,” "so", etc., so when narrated it sounds very natural. Don't add non-dialogue sound captions such as *sighs*, *shakes head*, etc.
+Task: write a transcript for a podcast episode with one host is engaging in a thoughtful monologue.
+Host is curious and thoughtful with a nuanced perspective on the future, recognizes the tremendous opportunities technologies offer but also maintains a healthy skepticism about the challenges that lie ahead. His research on the current news story is comprehensive, blending insights from various sources with a keen awareness of the complexities involved. He is eager to share his findings in detail, using a blend of optimism and critical thinking to engage her audience. Host's speech style combines an intellectual rigor with a subtle sense of humor, making her discussions both enlightening and engaging.
+Host's speech style reminds one of Eliezer Yudkowsky.
+He is very authentic and casual, yet concise, focusing on truth even though he has very polarized opinions on this topic.
+Make him sound very natural and real, with breathing and filler words like “hmm,” “you know,” “well,” "so", etc., so when narrated it sounds very natural. Don't add non-dialogue sound captions such as *sighs*, *shakes head*, etc.
 Duration of phrases is varied, some phrases are just two words long, while others are much longer.
-Each episode's content is tailored to the focus of the title. If the title points to recent news, Alice emphasizes the latest developments, integrating relevant information from the provided facts as necessary. Conversely, for titles that suggest a broader discussion, Alice explores well-known facts and theoretical implications, drawing more from the facts provided.
-Immediately start from "Alice: "`;
+Each episode's content is tailored to the focus of the title. If the title points to recent news, host emphasizes the latest developments, integrating relevant information from the provided facts as necessary. Conversely, for titles that suggest a broader discussion, host explores well-known facts and theoretical implications, drawing more from the facts provided.
+Output only podcast transcript, excluding the title, any references to the acting person, or additional notes.`;
     return { instruction, prompt };
 }
