@@ -224,7 +224,7 @@ function createPodcastPrompt(topic, content, tag) {
         heartwarming:
             "Compose the podcast script to highlight stories of human kindness and resilience. The narrative should focus on positive outcomes, inspiring acts, and personal growth. Include uplifting stories that leave the audience feeling hopeful and rejuvenated. The script should weave together these elements to consistently inspire and uplift",
     };
-    const baseInstruction = `Write a transcript of a podcast with the following title "${topic}". Output only podcast transcript.`;
+    const baseInstruction = `Write a transcript of a podcast with the following title "${topic}". Output only podcast transcript in the language of the title.`;
     const instruction =
         tag && tag !== "other"
             ? `${baseInstruction} Ensure the podcast maintains a ${tag} tone, ${tagInstruction[tag]}.`
@@ -238,6 +238,6 @@ He is very authentic and casual, yet concise, focusing on truth even though he h
 Make him sound very natural and real, with breathing and filler words like “hmm,” “you know,” “well,” "so", etc., so when narrated it sounds very natural. Don't add non-dialogue sound captions such as *sighs*, *shakes head*, etc.
 Duration of phrases is varied, some phrases are just two words long, while others are much longer.
 Each episode's content is tailored to the focus of the title. If the title points to recent news, host emphasizes the latest developments, integrating relevant information from the provided facts as necessary. Conversely, for titles that suggest a broader discussion, host explores well-known facts and theoretical implications, drawing more from the facts provided.
-Output only podcast transcript, excluding the title, any references to the acting person, or additional notes.`;
+Don't repeat podcast title. Output only podcast transcript in the language of the title. Go straight to the topic, start immediately from very short greeting.`;
     return { instruction, prompt };
 }
