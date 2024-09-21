@@ -8,8 +8,8 @@ const MODELS = {
     gpt_4o: "gpt-4o",
     gpt_3_5: "gpt-3.5-turbo",
     claude_3: "claude-3-5-sonnet-20240620",
-    perplexity_large: "llama-3-sonar-large-32k-online",
-    perplexity_small: "llama-3-sonar-small-32k-online",
+    perplexity_large: "llama-3.1-sonar-large-128k-online",
+    perplexity_small: "llama-3.1-sonar-small-128k-online",
 };
 
 async function jsonCompletion(instruction, prompt, useLargerModel) {
