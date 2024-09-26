@@ -1,8 +1,15 @@
 import React from "react";
-import { View, Button, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Button,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import { useNavigation } from "expo-router";
 import { usePathname } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
+import PromptScreen from "./PromptScreen/PromptScreen";
 
 const styles = StyleSheet.create({
   header: {
@@ -19,7 +26,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Header = () => {
+const Header = ({ onLogoPress }) => {
   const navigation = useNavigation();
   const pathname = usePathname();
   const isHomepage = pathname === "/";
@@ -44,7 +51,9 @@ const Header = () => {
         <View style={{ width: 48 }} />
       )}
       <View style={{ flex: 1, alignItems: "center" }}>
-        <Image source={require("../assets/logo.png")} style={styles.logo} />
+        <TouchableOpacity onPress={onLogoPress}>
+          <Image source={require("../assets/logo.png")} style={styles.logo} />
+        </TouchableOpacity>
       </View>
       <View style={{ width: 48 }} />
     </View>

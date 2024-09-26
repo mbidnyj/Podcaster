@@ -6,6 +6,7 @@ const sendPodcastsToTelegram = require("./sendPodcastsToTelegram");
 const generateCustomPodcast = require("./generateCustomPodcast");
 const githubWebhook = require("./githubWebhook");
 const streamReadyPodcast = require("./streamReadyPodcast");
+const modifyPrompt = require("./modifyPrompt");
 
 function getApp() {
     const app = express();
@@ -25,7 +26,7 @@ function getApp() {
     app.get("/api/generateCustomPodcast", generateCustomPodcast);
     app.get("/api/streamReadyPodcast", streamReadyPodcast);
     app.post("/github-webhook", githubWebhook);
-
+    app.route("/modifyPrompt").get(modifyPrompt).post(modifyPrompt);
     return app;
 }
 

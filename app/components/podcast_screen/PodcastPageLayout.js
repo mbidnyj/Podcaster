@@ -22,7 +22,14 @@ const PodcastPageLayout = ({ emoji, title, uri }) => {
       <SafeAreaView style={{ flex: 1, justifyContent: "space-between" }}>
         <View style={{ justifyContent: "flex-start" }}>
           <Pressable
-            onPress={() => navigation.goBack()}
+            onPress={() => {
+              if (navigation.canGoBack()) {
+                navigation.goBack();
+              } else {
+                // Handle the case where there is no screen to go back to
+                console.warn("No screen to go back to");
+              }
+            }}
             style={{
               width: 48,
               height: 48,

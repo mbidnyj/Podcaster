@@ -76,10 +76,15 @@ export default function HomePage() {
       },
     });
   };
+
+  const handleLogoPress = () => {
+    router.push("/prompt_screen");
+  };
+
   return (
     <View style={containerStyle}>
       <View style={innerContainerStyle}>
-        <Header />
+        <Header onLogoPress={handleLogoPress} />
         <KeyboardAvoidingView
           style={{ flex: 1 }}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
